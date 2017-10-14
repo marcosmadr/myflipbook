@@ -1,0 +1,12 @@
+{% extends "myflipbook/base.html" %}
+{% block content %}
+
+<div class="col-12 col-md-6 mx-auto mt-md-5 mt-1 pt-md-5 pt-1 text-center" >
+<h1>MyFlipBook</h1>
+<p class="lead">MyFlipBook is the easiest way to create amazing flipbooks from your videos! Just select a short video and see it be turned into frame-by-frame animation. Then print, cut, staple it all together and have fun!</p>
+<p>
+  <a href="{% url 'video' %}" class="btn btn-lg btn-primary">Select a Video</a>
+</p>
+</div>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+@page {
+    size: 21cm 29.7cm;
+	margin: 5mm;
+}
+table {
+    width: 210mm;
+    background-color: none;
+	page-break-after: always; 
+}
+td {
+    padding-top: 2.5mm;
+    padding-bottom: 2.5mm;
+    padding-left: 10mm;
+    padding-right: 2.5mm;
+    border: 1px dashed #f1f1f1;
+}

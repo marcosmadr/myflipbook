@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    {% load static %}
+    <link rel="icon" href="{% static 'images/icons/glyphicons-9-film.png' %}">
+
+    <title>MyFlipBook</title>
+    <!-- Bootstrap core CSS -->
+    {% block import_css %}
+    {% endblock %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/myflipbook.css' %}" rel="stylesheet">
+  </head>
+
+  <body style="height: 100%">
+
+        <nav class="navbar bg-myflipbook">
+            <div class="container">
+              <h3>
+                  <a href="{% url 'index' %}" class="nav-brand">
+                  <img src="{% static 'images/icons/glyphicons-9-film.png' %}">
+                  MyFlipBook</a>
+              </h3>
+              <div class="col-md-3">
+                  <nav class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link fb-menu" href="{% url 'index' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fb-menu" href="{% url 'index' %}">Help</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fb-menu" href="{% url 'contact' %}">Contact</a>
+                    </li>
+                  </nav>
+              </div>
+            </div>
+
+        </nav>
+
+      <div class="container pt-5">
+        {% block content %}
+        {% endblock %}	
+      </div>
+
+    <footer class="footer text-center">
+      <div class="container">
+        <span class="text-muted">MyFlipBook was developed by <a href="http://www.linkedin.com/in/maugusto" target="_blank">Marcos Ribeiro</a></span>
+      </div>
+    </footer>
+
+   <!-- Bootstrap core JavaScript
+    <!-- Bootstrap core JavaScript
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    {% block import_js %}
+    {% endblock %}
+  </body>
+</html>
+

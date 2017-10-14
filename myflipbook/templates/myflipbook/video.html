@@ -1,0 +1,49 @@
+{% extends "myflipbook/base.html" %}
+{% block content %}
+
+<div class="col-12 col-md-6 mx-auto text-center mt-md-5 mt-1 pt-md-5 pt-1" id="div-upload">
+        <h1>MyFlipBook</h1>
+        <div class="form-group">
+            <label for="file-video">Choose a movie to generate your flipbook </label>
+            <input type="file" id="file-video" class="btn btn-lm" accept="video/*">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-lg btn-primary" type="button" id="btn-generate-frames">Generate Flipbook</button>
+        </div>
+</div>
+
+<div class="col-12 col-md-6 mx-auto mt-5 pt-5" id="div-loading" style="display:none">
+	<h1>Please wait...</h1>
+	<div class="progress">
+		<div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">0%</div>
+	</div>
+
+</div>
+
+<div class="card mt-md-5 mt-1 pt-2 pl-2 pr-2 pb-2" id="div-carousel" style="display:none;">
+    <div class="owl-carousel owl-theme owl-loaded" id="div-owl-carousel">
+    </div>
+        <div class="card-block">
+        <h4 class="card-title text-center">Printable page generation</h4>
+        <p class="card-text text-center">Here are all frames extracted from your video. Now click on 'Print Version' to open a new page formatted for printing</p>
+        <button class="btn btn-primary float-sm-right" id="btn-generate-print">Print Version</button>
+    </div>
+</div>
+
+<div class="col-12 col-md-6 mx-auto pt-2">
+    <div class="alert alert-danger text-center" role="alert" id="div-error" style="display:none">
+    </div>
+</div>
+
+{% endblock %}
+
+{% load static %}
+{% block import_css %}
+<link href="{% static 'css/owl/owl.carousel.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/owl/owl.theme.default.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block import_js %}
+<script src="{% static 'js/myfb.creator.js' %}"></script>
+<script src="{% static 'js/owl/owl.carousel.min.js' %}"></script>
+{% endblock %}
