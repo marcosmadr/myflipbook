@@ -1,7 +1,13 @@
 $(document).ready(function(){
 
 var myvideo = {
-    extensions: [ 'mp4', 'avi', 'mov', 'wmv', 'mkv' ],
+    extensions: function(ext) {
+        if($.inArray(ext, [ 'mp4', 'avi', 'mov', 'wmv', 'mkv' ]) == -1) {
+            return false;
+        } else {
+            return true;
+        }
+    },
     frame: { 
         width: 340, 
         height: 233, 
@@ -41,6 +47,14 @@ var buildCarouselContent = function() {
     });
 }
 
+Number.prototype.toFixedDown = function(n) {
+    var x = String(this).split(".");
+    if (! x[1] ) {
+        return this;
+    }
+    return Number(x[0]+"."+String(x[1]).substring(0,n));
+};
+
 var video = document.createElement("video");
 
 var createImage = function() {
@@ -59,7 +73,7 @@ video.addEventListener('seeked', function() {
 
     myvideo.position += myvideo.increment;
 
-    if (myvideo.position <= this.duration) {
+    if (myvideo.position.toFixedDown(2) <= this.duration) {
         this.currentTime = myvideo.position;
     } else {
         $("#div-loading").hide();
@@ -77,9 +91,7 @@ video.addEventListener('loadeddata', function() {
             message: 'Cannot determine video length'
         };
     }
-
     myvideo.increment = video.duration / myvideo.frame.max;
-    myvideo.interval = 5;
     myvideo.position = 0;
     myvideo.frames = [];
 
@@ -99,7 +111,7 @@ $("#btn-generate-frames").click(function() {
 
     var ext = file.name.split('.').pop().toLowerCase();
 
-    if($.inArray(ext, myvideo.extensions) == -1) {
+    if(! myvideo.extensions(ext)) {
         $("#div-error").html('<strong>Sorry,</strong> Invalid file format!');
         $("#div-error").show();
         return false;
@@ -117,6 +129,11 @@ $("#btn-generate-frames").click(function() {
         $(".progress-bar").width(progress + '%').html(progress + '%');
    }, 500);
 
+});
+
+$($('input[name=opt-filter]')).click(function() {
+    $("img").removeClass('filter-sepia filter-grayscale filter-contrast filter-opacity filter-saturate');
+    $("img").addClass('filter-'+this.value);
 });
 
 $("#btn-generate-print").click(function() {
