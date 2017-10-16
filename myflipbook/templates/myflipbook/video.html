@@ -28,42 +28,14 @@
         <hr>
         <h4 class="card-title text-center">Apply a filter</h4>
     <!--        <p class="card-text text-center">Here are all frames extracted from your video. Now click on 'Print Version' to open a new page formatted for printing</p>-->
-        <div class="form-check form-check-inline">
-            <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="opt-filter" value="nofilter" checked>
-                    No Filter
-            </label>
-        </div>
-        <div class="form-check form-check-inline">
-            <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="opt-filter" value="grayscale">
-                    Grey Scale
-            </label>
-        </div>
-        <div class="form-check form-check-inline">
-            <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="opt-filter" value="sepia">
-                    Sepia
-            </label>
-        </div>
-        <div class="form-check form-check-inline">
-            <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="opt-filter" value="contrast">
-                    Contrast
-            </label>
-        </div>
-        <div class="form-check form-check-inline">
-            <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="opt-filter" value="opacity">
-                    Opacity
-            </label>
-        </div>
-        <div class="form-check form-check-inline">
-            <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="opt-filter" value="saturate">
-                    Saturate
-            </label>
-        </div>
+        {% for k,v in filters %}
+            <div class="form-check form-check-inline">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="opt-filter" value="{{v}}" {% if v == "nofilter"%}"checked"{% endif %}>
+                        {{k}}
+                </label>
+            </div>
+        {% endfor %}
         <hr>
         <h4 class="card-title text-center">Add a cover text</h4>
         <div id="div-apply-text" class="container">

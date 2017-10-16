@@ -24,8 +24,12 @@ def contact_thanks(request):
     return render(request, 'myflipbook/contact_thanks.html')
 
 def video(request):
-#    form = UploadForm()
-    return render(request, 'myflipbook/video.html')
+    filters = [('Sepia','sepia'),
+                ('Gray Scale','grayscale'),
+                ('Contrast','contrast'),
+                ('Saturate','sateurate'),
+                ('Opacity','opacity')]
+    return render(request, 'myflipbook/video.html', {'filters': filters })
 
 def contact(request):
     if request.method == 'POST':
