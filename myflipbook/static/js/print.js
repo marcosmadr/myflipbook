@@ -10,9 +10,9 @@ var generatePrintable = function() {
     var y_counter = 0;
     var table = $('<table></table>');
 
-    while (myvideo.frames.length) {
+    while (myflipbook.frames.length) {
 
-        var frames = myvideo.frames.splice(0, page.max_x);
+        var frames = myflipbook.frames.splice(0, page.max_x);
 
         var line = $('<tr></tr>');
         for (var i=0; i<frames.length; i++) {

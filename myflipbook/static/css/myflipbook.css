@@ -1,5 +1,5 @@
 .filter-sepia {
-    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    -webkit-filter: sepia(100%); /* Safari 6.0 - 9.0 */
     filter: sepia(100%);
 }
 
@@ -9,7 +9,7 @@
 }
 
 .filter-contrast {
-    -webkit-filter: contraste(180%); /* Safari 6.0 - 9.0 */
+    -webkit-filter: contrast(180%); /* Safari 6.0 - 9.0 */
     filter: contrast(180%);
 }
 

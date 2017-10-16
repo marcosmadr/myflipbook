@@ -23,50 +23,78 @@
 <div class="card mt-md-5 mt-1 pt-2 pl-2 pr-2 pb-2" id="div-carousel" style="display:none;">
     <div class="owl-carousel owl-theme owl-loaded" id="div-owl-carousel">
     </div>
-        <div class="card-block text-center">
+    <div class="card-block text-center">
+        
+        <hr>
         <h4 class="card-title text-center">Apply a filter</h4>
-<!--        <p class="card-text text-center">Here are all frames extracted from your video. Now click on 'Print Version' to open a new page formatted for printing</p>-->
-    <div class="form-check form-check-inline">
-        <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="opt-filter" value="nofilter" checked>
-                No Filter
-        </label>
-    </div>
-    <div class="form-check form-check-inline">
-        <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="opt-filter" value="grayscale">
-                Grey Scale
-        </label>
-    </div>
-    <div class="form-check form-check-inline">
-        <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="opt-filter" value="sepia">
-                Sepia
-        </label>
-    </div>
-    <div class="form-check form-check-inline">
-        <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="opt-filter" value="contrast">
-                Contrast
-        </label>
-    </div>
-    <div class="form-check form-check-inline">
-        <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="opt-filter" value="opacity">
-                Opacity
-        </label>
-    </div>
-    <div class="form-check form-check-inline">
-        <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="opt-filter" value="saturate">
-                Saturate
-        </label>
-    </div>
-    <div>
-    <button class="btn btn-primary float-sm-right" id="btn-generate-print">Print Version</button>
-    </div>
-    </div>
+    <!--        <p class="card-text text-center">Here are all frames extracted from your video. Now click on 'Print Version' to open a new page formatted for printing</p>-->
+        <div class="form-check form-check-inline">
+            <label class="form-check-label">
+                <input class="form-check-input" type="radio" name="opt-filter" value="nofilter" checked>
+                    No Filter
+            </label>
+        </div>
+        <div class="form-check form-check-inline">
+            <label class="form-check-label">
+                <input class="form-check-input" type="radio" name="opt-filter" value="grayscale">
+                    Grey Scale
+            </label>
+        </div>
+        <div class="form-check form-check-inline">
+            <label class="form-check-label">
+                <input class="form-check-input" type="radio" name="opt-filter" value="sepia">
+                    Sepia
+            </label>
+        </div>
+        <div class="form-check form-check-inline">
+            <label class="form-check-label">
+                <input class="form-check-input" type="radio" name="opt-filter" value="contrast">
+                    Contrast
+            </label>
+        </div>
+        <div class="form-check form-check-inline">
+            <label class="form-check-label">
+                <input class="form-check-input" type="radio" name="opt-filter" value="opacity">
+                    Opacity
+            </label>
+        </div>
+        <div class="form-check form-check-inline">
+            <label class="form-check-label">
+                <input class="form-check-input" type="radio" name="opt-filter" value="saturate">
+                    Saturate
+            </label>
+        </div>
+        <hr>
+        <h4 class="card-title text-center">Add a cover text</h4>
+        <div id="div-apply-text" class="container">
+            <div class="row">
+                <div class="col-12 col-md-4 form-control ml-auto">
+                        <div>
+                            <input type="text" class="form-control" id="input-text" placeholder="Happy Birthday!">
+                        </div>
+                        <div class="form-inline mt-2">
+                            <label class="form-label">
+                                Color 
+                                <input type='text' id="input-text-color">
+                            </label>
+                            <label class="form-label ml-md-2">
+                                Size 
+                                <input type="number" class="form-control" id="input-text-size" min="10" max="50" value="30">
+                            </label>
+                            <button class="btn btn-secondary ml-md-2" id="btn-apply-text">Apply Text</button>
+                        </div>
+                </div>
+                <div class="input-group col-12 col-md-6">
+                    <img id="img-cover" width="340" height="233" style="background-color:#d4d4d4">
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <button class="btn btn-primary float-sm-right" id="btn-generate-print">Print Version</button>
+        </div>
 
+    </div>
 </div>
 
 <div class="col-12 col-md-6 mx-auto pt-2">
@@ -78,11 +106,16 @@
 
 {% load static %}
 {% block import_css %}
+<link href="{% static 'css/spectrum.css' %}" rel="stylesheet">
 <link href="{% static 'css/owl/owl.carousel.min.css' %}" rel="stylesheet">
 <link href="{% static 'css/owl/owl.theme.default.min.css' %}" rel="stylesheet">
 {% endblock %}
 
+
+
 {% block import_js %}
-<script src="{% static 'js/myfb.creator.js' %}"></script>
+<script src="{% static 'js/spectrum.js' %}"></script>
+<script src="{% static 'js/myfb.lib.js' %}"></script>
+<script src="{% static 'js/myfb.js' %}"></script>
 <script src="{% static 'js/owl/owl.carousel.min.js' %}"></script>
 {% endblock %}
