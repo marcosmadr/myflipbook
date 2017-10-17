@@ -39,6 +39,10 @@ var callbackUpdateContent = function(data) {
  	buildCarouselContent(data);
 };
 
+var callbackUpdateCover = function(data) {
+    $("#img-frame-0").attr('src', data);
+};
+
 $("input[name=opt-filter]").click(function() {
     $("img").removeClass("filter-sepia filter-grayscale filter-saturate filter-contrast filter-opacity nofilter");
     $("img").addClass("filter-"+this.value);
@@ -83,7 +87,7 @@ $("input[name=opt-deco]").click(function() {
                 $("#input-text").val(),
                 $("#input-text-color").val(),
                 $("#input-text-size").val(),
-                $("#img-frame-0"),
+                callbackUpdateCover,
                 document.getElementById("img-cover-deco-"+
                         $('input[name=opt-deco]:checked').val())
                 );
@@ -95,7 +99,7 @@ $("#btn-apply-text").click(function() {
                 $("#input-text").val(),
                 $("#input-text-color").val(),
                 $("#input-text-size").val(),
-                $("#img-frame-0"),
+                callbackUpdateCover,
                 document.getElementById("img-cover-deco-"+
                         $('input[name=opt-deco]:checked').val())
               );

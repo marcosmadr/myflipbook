@@ -26,7 +26,7 @@ var myFlipBook = function(file, func) {
     var video = document.createElement("video");
     video.src = fileURL;
 
-    var createCover = function(text, font_color, font_size, img_element, deco) {
+    var createCover = function(text, font_color, font_size, callback_cover, deco) {
         var canvas = document.createElement("canvas");
         var context = canvas.getContext('2d');
         canvas.width = frame.width;
@@ -44,8 +44,8 @@ var myFlipBook = function(file, func) {
                  context.font = font_size+"pt Calibri";
                  context.fillText(text, 30, 50);
              }
-             if (img_element) {
-                 img_element.attr('src', canvas.toDataURL());
+             if (callback_cover) {
+                callback_cover(canvas.toDataURL());
              }
              frames_cover = canvas.toDataURL();
         };
@@ -106,11 +106,12 @@ var myFlipBook = function(file, func) {
             return frame;
         },
         frames: function() {
-            frames[0] = frames_cover;
-            return frames;
+            var new_frames = frames.slice();
+            new_frames[0] = frames_cover;
+            return new_frames;
         },
-        createCover: function(text, font_color, font_size, img_element, deco ) {
-            return createCover(text, font_color, font_size, img_element, deco);
+        createCover: function(text, font_color, font_size, callback_cover_func, deco ) {
+            return createCover(text, font_color, font_size, callback_cover_func, deco);
         },
     };
 
