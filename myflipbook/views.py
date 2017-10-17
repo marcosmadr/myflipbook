@@ -24,12 +24,17 @@ def contact_thanks(request):
     return render(request, 'myflipbook/contact_thanks.html')
 
 def video(request):
-    filters = [('Sepia','sepia'),
+    filters = [('No filter','nofilter'),
+                ('Sepia','sepia'),
                 ('Gray Scale','grayscale'),
                 ('Contrast','contrast'),
-                ('Saturate','sateurate'),
+                ('Saturate','saturate'),
                 ('Opacity','opacity')]
-    return render(request, 'myflipbook/video.html', {'filters': filters })
+    deco = [('No decoration','nodeco'),
+            ('Happy BDay','frame-2.svg'),
+            ('Vintage','frame-1.svg'),
+            ('Cinema','frame-4.svg')]
+    return render(request, 'myflipbook/video.html', {'filters': filters, 'decoration': deco })
 
 def contact(request):
     if request.method == 'POST':

@@ -3,6 +3,7 @@ var myFlipBook = function(file, func) {
 
     var allowed_ext = [ 'mp4', 'avi', 'mov', 'wmv', 'mkv' ];
     var frames = [];
+    var frames_cover = undefined;
     var position = 0;
     var frame = { 
         width: 340, 
@@ -24,6 +25,32 @@ var myFlipBook = function(file, func) {
     var fileURL = URL.createObjectURL(file);
     var video = document.createElement("video");
     video.src = fileURL;
+
+    var createCover = function(text, font_color, font_size, img_element, deco) {
+        var canvas = document.createElement("canvas");
+        var context = canvas.getContext('2d');
+        canvas.width = frame.width;
+        canvas.height = frame.height;
+
+        var coverImage = new Image();
+       
+        coverImage.onload = function() {
+             context.drawImage(coverImage, 0, 0);
+             if (deco) {
+                context.drawImage(deco, 0, 0);
+             }
+             if (text) {
+                 context.fillStyle = font_color;
+                 context.font = font_size+"pt Calibri";
+                 context.fillText(text, 30, 50);
+             }
+             if (img_element) {
+                 img_element.attr('src', canvas.toDataURL());
+             }
+             frames_cover = canvas.toDataURL();
+        };
+        coverImage.src = frames[0];
+    };
 
     var createImage = function() {
         var canvas = document.createElement("canvas");
@@ -79,8 +106,12 @@ var myFlipBook = function(file, func) {
             return frame;
         },
         frames: function() {
+            frames[0] = frames_cover;
             return frames;
-            },
-        };
+        },
+        createCover: function(text, font_color, font_size, img_element, deco ) {
+            return createCover(text, font_color, font_size, img_element, deco);
+        },
+    };
 
 };

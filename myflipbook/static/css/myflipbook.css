@@ -1,26 +1,6 @@
-.filter-sepia {
-    -webkit-filter: sepia(100%); /* Safari 6.0 - 9.0 */
-    filter: sepia(100%);
-}
-
-.filter-grayscale {
-    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-    filter: grayscale(100%);
-}
-
-.filter-contrast {
-    -webkit-filter: contrast(180%); /* Safari 6.0 - 9.0 */
-    filter: contrast(180%);
-}
-
-.filter-opacity {
-    -webkit-filter: opacity(50%); /* Safari 6.0 - 9.0 */
-    filter: opacity(50%);
-}
-
-.filter-saturate {
-    -webkit-filter: saturate(7); /* Safari 6.0 - 9.0 */
-    filter: saturate(7);
+.fb-cover-deco {
+    width: 113px;
+    height: 77px;
 }
 
 .active {

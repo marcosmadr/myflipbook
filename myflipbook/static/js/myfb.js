@@ -2,30 +2,10 @@ $(document).ready(function(){
 
 var myflipbook = { data: undefined, progressInterval : undefined };
 
-var createCover = function(img, text, font_color, font_size, img_element) {
-
-    var canvas = document.createElement("canvas");
-    var context = canvas.getContext('2d');
-    canvas.width = myflipbook.data.frame().width;
-    canvas.height = myflipbook.data.frame().height;
-
-    var imageObj = new Image();
-
-    imageObj.onload = function(){
-
-         context.drawImage(imageObj, 0, 0);
-         context.fillStyle = font_color;
-         context.font = font_size+"pt Calibri";
-    	 context.fillText(text, 30, 40);
-         img_element.attr('src', canvas.toDataURL());
-    };
-	imageObj.src = img;
-};
-
 var buildCarouselContent = function(frames) {
     var imgurl = undefined;
     for(var i=0; i<frames.length; i++) {
-        $('#div-owl-carousel').append("<div><img src='"+frames[i]+"'></div>");
+        $('#div-owl-carousel').append("<div><img id='img-frame-"+i+"' src='"+frames[i]+"'></div>");
     }
     $(".owl-carousel").owlCarousel({
     margin:10,
@@ -62,6 +42,7 @@ var callbackUpdateContent = function(data) {
 $("input[name=opt-filter]").click(function() {
     $("img").removeClass("filter-sepia filter-grayscale filter-saturate filter-contrast filter-opacity nofilter");
     $("img").addClass("filter-"+this.value);
+    myflipbook.filters = "filter-"+this.value;
 });
 
 $("#btn-generate-frames").click(function() {
@@ -71,19 +52,19 @@ $("#btn-generate-frames").click(function() {
 
     try {
         myflipbook.data = myFlipBook(file, callbackUpdateContent); 
-
     } catch (e) {
-
         switch(e.name) {
             case 'FileInput':
-                $("#div-error").html('<strong>Sorry,</strong> Select a file!');
+                $("#div-error").html('<strong>Sorry,</strong>Select a file!');
                 $("#div-error").show();
                 break;
             case 'InvalidExtension':
-                $("#div-error").html('<strong>Sorry,</strong> Invalid file format!');
+                $("#div-error").html('<strong>Sorry,</strong>Invalid file format!');
                 $("#div-error").show();
                 break;
             default:
+                $("#div-error").html('<strong>Sorry,</strong>Unknown error!');
+                $("#div-error").show();
         }
         return false;
     }
@@ -97,19 +78,34 @@ $("#btn-generate-frames").click(function() {
 
 });
 
-$("#btn-apply-text").click(function() {
-    createCover(
-                myflipbook.data.frames()[0],
+$("input[name=opt-deco]").click(function() {
+    myflipbook.data.createCover(
                 $("#input-text").val(),
                 $("#input-text-color").val(),
                 $("#input-text-size").val(),
-                $("#img-cover")
+                $("#img-frame-0"),
+                document.getElementById("img-cover-deco-"+
+                        $('input[name=opt-deco]:checked').val())
+                );
+    $('#div-owl-carousel').trigger('to.owl.carousel', 0);
+});
+
+$("#btn-apply-text").click(function() {
+    myflipbook.data.createCover(
+                $("#input-text").val(),
+                $("#input-text-color").val(),
+                $("#input-text-size").val(),
+                $("#img-frame-0"),
+                document.getElementById("img-cover-deco-"+
+                        $('input[name=opt-deco]:checked').val())
               );
+    $('#div-owl-carousel').trigger('to.owl.carousel', 0);
 });
 
 $("#btn-generate-print").click(function() {
     var printWindow = window.open('print');
-    printWindow.myflipbook = { frames: myflipbook.data.frames() };
+    printWindow.myflipbook = { frames: myflipbook.data.frames(),
+                                filters: myflipbook.filters};
     window.location.replace("/myflipbook/video/thanks");
 });
 
