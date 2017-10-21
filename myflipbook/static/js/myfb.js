@@ -55,7 +55,7 @@ $("#btn-generate-frames").click(function() {
     file = file_input.files[0];
 
     try {
-        myflipbook.data = myFlipBook(file, callbackUpdateContent); 
+        myflipbook.data = new myFlipBook(file, callbackUpdateContent); 
     } catch (e) {
         switch(e.name) {
             case 'FileInput':
@@ -108,7 +108,7 @@ $("#btn-apply-text").click(function() {
 
 $("#btn-generate-print").click(function() {
     var printWindow = window.open('print');
-    printWindow.myflipbook = { frames: myflipbook.data.frames(),
+    printWindow.myflipbook = { frames: myflipbook.data.getFrames(),
                                 filters: myflipbook.filters};
     window.location.replace("/myflipbook/video/thanks");
 });
