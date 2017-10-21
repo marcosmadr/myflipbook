@@ -5,7 +5,7 @@ var myflipbook = { data: undefined, progressInterval : undefined };
 var buildCarouselContent = function(frames) {
     var imgurl = undefined;
     for(var i=0; i<frames.length; i++) {
-        $('#div-owl-carousel').append("<div><img id='img-frame-"+i+"' src='"+frames[i]+"'></div>");
+        $("#div-owl-carousel").append("<div><img id='img-frame-"+i+"' src='"+frames[i]+"'></div>");
     }
     $(".owl-carousel").owlCarousel({
     margin:10,
@@ -40,7 +40,7 @@ var callbackUpdateContent = function(data) {
 };
 
 var callbackUpdateCover = function(data) {
-    $("#img-frame-0").attr('src', data);
+    $("#img-frame-0").attr("src", data);
 };
 
 $("input[name=opt-filter]").click(function() {
@@ -58,16 +58,16 @@ $("#btn-generate-frames").click(function() {
         myflipbook.data = new myFlipBook(file, callbackUpdateContent); 
     } catch (e) {
         switch(e.name) {
-            case 'FileInput':
-                $("#div-error").html('<strong>Sorry,</strong>Select a file!');
+            case "FileInput":
+                $("#div-error").html("<strong>Sorry,</strong>Select a file!");
                 $("#div-error").show();
                 break;
-            case 'InvalidExtension':
-                $("#div-error").html('<strong>Sorry,</strong>Invalid file format!');
+            case "InvalidExtension":
+                $("#div-error").html("<strong>Sorry,</strong>Invalid file format!");
                 $("#div-error").show();
                 break;
             default:
-                $("#div-error").html('<strong>Sorry,</strong>Unknown error!');
+                $("#div-error").html("<strong>Sorry,</strong>Unknown error!");
                 $("#div-error").show();
         }
         return false;
@@ -77,7 +77,7 @@ $("#btn-generate-frames").click(function() {
     $("#div-loading").show();
 
     myflipbook.progressInt = setInterval(function() { 
-        $(".progress-bar").width(myflipbook.data.progress() + '%').html(myflipbook.data.progress() + '%');
+        $(".progress-bar").width(myflipbook.data.progress() + "%").html(myflipbook.data.progress() + "%");
    }, 500);
 
 });
@@ -89,9 +89,9 @@ $("input[name=opt-deco]").click(function() {
                 $("#input-text-size").val(),
                 callbackUpdateCover,
                 document.getElementById("img-cover-deco-"+
-                        $('input[name=opt-deco]:checked').val())
+                        $("input[name=opt-deco]:checked").val())
                 );
-    $('#div-owl-carousel').trigger('to.owl.carousel', 0);
+    $("#div-owl-carousel").trigger("to.owl.carousel", 0);
 });
 
 $("#btn-apply-text").click(function() {
@@ -101,13 +101,13 @@ $("#btn-apply-text").click(function() {
                 $("#input-text-size").val(),
                 callbackUpdateCover,
                 document.getElementById("img-cover-deco-"+
-                        $('input[name=opt-deco]:checked').val())
+                        $("input[name=opt-deco]:checked").val())
               );
-    $('#div-owl-carousel').trigger('to.owl.carousel', 0);
+    $("#div-owl-carousel").trigger("to.owl.carousel", 0);
 });
 
 $("#btn-generate-print").click(function() {
-    var printWindow = window.open('print');
+    var printWindow = window.open("print");
     printWindow.myflipbook = { frames: myflipbook.data.getFrames(),
                                 filters: myflipbook.filters};
     window.location.replace("/myflipbook/video/thanks");
