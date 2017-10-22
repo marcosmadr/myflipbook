@@ -153,8 +153,6 @@ $("#btn-generate-print").click(function() {
     window.location.replace("/myflipbook/video/thanks");
 });
 
-$("#input-text-color").spectrum({preferredFormat: "hex",});
-
 buildCoverTemplates();
 
 });
