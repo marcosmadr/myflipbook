@@ -30,11 +30,8 @@ def video(request):
                 ('Contrast','contrast'),
                 ('Saturate','saturate'),
                 ('Opacity','opacity')]
-    deco = [('No decoration','nodeco'),
-            ('Happy BDay','frame-2.svg'),
-            ('Vintage','frame-1.svg'),
-            ('Cinema','frame-4.svg')]
-    return render(request, 'myflipbook/video.html', {'filters': filters, 'decoration': deco })
+
+    return render(request, 'myflipbook/video.html', {'filters': filters})
 
 def contact(request):
     if request.method == 'POST':

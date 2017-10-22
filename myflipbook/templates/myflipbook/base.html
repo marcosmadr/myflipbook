@@ -19,7 +19,7 @@
 
   <body style="height: 100%">
 
-        <nav class="navbar bg-myflipbook">
+        <nav class="navbar fb-menu-background">
             <div class="container">
               <h3>
                   <a href="{% url 'index' %}" class="nav-brand">
@@ -29,13 +29,13 @@
               <div class="col-md-3">
                   <nav class="nav nav-pills">
                     <li class="nav-item">
-                        <a class="nav-link fb-menu" href="{% url 'index' %}">Home</a>
+                        <a class="nav-link fb-menu" id="btn-1" href="{% url 'index' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fb-menu" href="{% url 'index' %}">Help</a>
+                        <a class="nav-link fb-menu" id="btn-2" href="{% url 'index' %}">Help</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fb-menu" href="{% url 'contact' %}">Contact</a>
+                        <a class="nav-link fb-menu" id="btn-3" href="{% url 'contact' %}">Contact</a>
                     </li>
                   </nav>
               </div>

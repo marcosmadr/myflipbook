@@ -2,6 +2,55 @@ $(document).ready(function(){
 
 var myflipbook = { data: undefined, progressInterval : undefined };
 
+myflipbook.cover_templates = {
+    tpl0: {
+        "name": "No Cover",
+		"img" : "nodeco"
+    },
+    tpl1: {
+        "name": "Happy Birthday",
+		"img": "frame-2.svg",
+        "text_font": "pt Calibri",
+        "text_size": 40,
+        "text_color": "Yellow",
+        "text_x": 70,
+        "text_y": 70
+    },
+    tpl2: {
+        "name": "Vintage",
+		"img": "frame-1.svg",
+        "text_font": "pt Calibri",
+        "text_size": 40,
+        "text_color": "White",
+        "text_x": 40,
+        "text_y": 40
+    },
+    tpl3: {
+        "Name": "Cinema",
+		"img": "frame-4.svg",
+        "text_font": "pt Calibri",
+        "text_size": 30,
+        "text_color": "Black",
+        "text_x": 60,
+        "text_y": 70
+    }
+};
+
+var buildCoverTemplates = function() {
+    for (tpl in myflipbook.cover_templates) {
+		$("#cover-deco").append(
+			"<div class='col-12 col-md-2'>" +
+			"	<div class='item'>" +
+			"		<img src='/static/images/frames/" + myflipbook.cover_templates[tpl].img +"'"+
+			"		class='fb-cover-deco fb-cover-select' id='img-cover-deco-" + tpl + "' " +
+			"		alt='" + myflipbook.cover_templates[tpl].name + "'>" +
+			"		<div class='item-overlay top'></div>"+
+			"	</div>"+
+			"</div>"
+		);
+    }
+};
+
 var buildCarouselContent = function(frames) {
     var imgurl = undefined;
     for(var i=0; i<frames.length; i++) {
@@ -82,27 +131,18 @@ $("#btn-generate-frames").click(function() {
 
 });
 
-$("input[name=opt-deco]").click(function() {
-    myflipbook.data.createCover(
-                $("#input-text").val(),
-                $("#input-text-color").val(),
-                $("#input-text-size").val(),
-                callbackUpdateCover,
-                document.getElementById("img-cover-deco-"+
-                        $("input[name=opt-deco]:checked").val())
-                );
+$('#cover-deco').on('click', '.fb-cover-select', function(event) {
+	event.preventDefault();
+    myflipbook.data.setCoverDeco(document.getElementById(this.id));
+	var tpl_id = this.id.split('-')[3];
+    myflipbook.data.setCoverTemplate(myflipbook.cover_templates[tpl_id]);
+    myflipbook.data.createCover(callbackUpdateCover);
     $("#div-owl-carousel").trigger("to.owl.carousel", 0);
 });
 
 $("#btn-apply-text").click(function() {
-    myflipbook.data.createCover(
-                $("#input-text").val(),
-                $("#input-text-color").val(),
-                $("#input-text-size").val(),
-                callbackUpdateCover,
-                document.getElementById("img-cover-deco-"+
-                        $("input[name=opt-deco]:checked").val())
-              );
+    myflipbook.data.setCoverText($("#input-text").val());
+    myflipbook.data.createCover(callbackUpdateCover);
     $("#div-owl-carousel").trigger("to.owl.carousel", 0);
 });
 
@@ -114,5 +154,7 @@ $("#btn-generate-print").click(function() {
 });
 
 $("#input-text-color").spectrum({preferredFormat: "hex",});
+
+buildCoverTemplates();
 
 });

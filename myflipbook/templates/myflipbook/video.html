@@ -21,7 +21,7 @@
 
 </div>
 
-<div class="card mt-md-5 mt-1 pt-2 pl-2 pr-2 pb-2" id="div-carousel" style="display:none;">
+<div class="mb-2 mb-md-5 mt-md-5 mt-1 pt-2 pl-2 pr-2 pb-2" id="div-carousel" style="display:none;">
     <div class="owl-carousel owl-theme owl-loaded" id="div-owl-carousel">
     </div>
     <div class="card-block text-center">
@@ -40,36 +40,18 @@
         <hr>
 
         <h4 class="card-title text-center">Select cover decoration</h4>
-        {% for k,v in decoration %}
-            <div class="form-check form-check-inline">
-                <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="opt-deco" value="{{v}}" {% if v == "nodeco"%}"checked"{% endif %}>
-                        {% if v == "nodeco" %}
-                            {{k}}
-                        {% else %}
-                            <img src="{% static 'images/frames/' %}{{v}}" class="fb-cover-deco" id="img-cover-deco-{{v}}" alt="{{k}}">
-                        {% endif %}
-                </label>
+        <div class="container">
+            <div class="row justify-content-center" id="cover-deco">
             </div>
-        {% endfor %}
+        </div>
         <hr>
 
         <h4 class="card-title text-center">Add cover text</h4>
         <div id="div-apply-text" class="container">
             <div class="col-12 col-md-4 mx-auto">
-                    <div>
+                    <div class="form-inline">
                         <input type="text" class="form-control" id="input-text" placeholder="Happy Birthday!">
-                    </div>
-                    <div class="form-inline mt-2">
-                        <label class="form-label">
-                            Color 
-                            <input type='text' id="input-text-color">
-                        </label>
-                        <label class="form-label ml-md-2">
-                            Size 
-                            <input type="number" class="form-control" id="input-text-size" min="10" max="50" value="30">
-                        </label>
-                        <button class="btn btn-secondary ml-md-2" id="btn-apply-text">Apply Text</button>
+                        <button class="btn btn-secondary ml-1" id="btn-apply-text">Apply Text</button>
                     </div>
             </div>
         </div>
