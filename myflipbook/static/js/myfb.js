@@ -10,29 +10,29 @@ myflipbook.cover_templates = {
     tpl1: {
         "name": "Happy Birthday",
 		"img": "frame-2.svg",
-        "text_font": "pt Calibri",
-        "text_size": 40,
+        "text_font": "pt Courier",
+        "text_size": 30,
         "text_color": "Yellow",
-        "text_x": 70,
-        "text_y": 70
+        "text_x": 60,
+        "text_y": 80
     },
     tpl2: {
         "name": "Vintage",
 		"img": "frame-1.svg",
-        "text_font": "pt Calibri",
-        "text_size": 40,
-        "text_color": "White",
-        "text_x": 40,
-        "text_y": 40
+        "text_font": "pt Helvetica",
+        "text_size": 30,
+        "text_color": "Black",
+        "text_x": 80,
+        "text_y": 70
     },
     tpl3: {
         "Name": "Cinema",
 		"img": "frame-4.svg",
-        "text_font": "pt Calibri",
+        "text_font": "pt Impact",
         "text_size": 30,
-        "text_color": "Black",
-        "text_x": 60,
-        "text_y": 70
+        "text_color": "White",
+        "text_x": 90,
+        "text_y": 190
     }
 };
 
