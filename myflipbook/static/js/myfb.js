@@ -5,7 +5,12 @@ var myflipbook = { data: undefined, progressInterval : undefined };
 myflipbook.cover_templates = {
     tpl0: {
         "name": "No Cover",
-		"img" : "frame-0.svg"
+		"img" : "frame-0.svg",
+        "text_font": "pt Arial",
+        "text_size": 30,
+        "text_color": "White",
+        "text_x": 40,
+        "text_y": 60
     },
     tpl1: {
         "name": "Happy Birthday",
