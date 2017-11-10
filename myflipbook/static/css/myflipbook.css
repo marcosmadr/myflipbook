@@ -4,20 +4,10 @@
 
 }
 .fb-white-text {
-    color: white;
-    text-shadow: 2px 2px black;
+    color: black;
 }
 
 #div-home {
-    background-color: silver; 
-    background-position:center top;
-    background-size: cover;
-    border-radius: 0px;
-    background-repeat: no-repeat;
-    min-height: 38vh;
-}
-
-#div-upload {
     background-color: silver; 
     background-position:center top;
     background-size: cover;
