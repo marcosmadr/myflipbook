@@ -5,7 +5,7 @@ var myflipbook = { data: undefined, progressInterval : undefined };
 myflipbook.cover_templates = {
     tpl0: {
         "name": "No Cover",
-		"img" : "nodeco"
+		"img" : "frame-0.svg"
     },
     tpl1: {
         "name": "Happy Birthday",
