@@ -1,7 +1,7 @@
 {% extends "myflipbook/base.html" %}
 {% block content %}
-<div class="container pt-md-5 pt-1 pb-1">
-    <div class="col-12 col-md-6 mx-auto">
+<div class="container">
+    <div class="col-12 col-md-6 pt-md-5 pt-1 pb-1 mx-auto">
     <form action="{% url 'contact' %}" method="POST">{% csrf_token %}
     <h1>Contact</h1>
         <div class="form-group">

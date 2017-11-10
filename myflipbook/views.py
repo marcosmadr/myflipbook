@@ -43,6 +43,9 @@ def contact(request):
 
     return render(request, 'myflipbook/contact.html', {'form': form })
 
+def help(request):
+    return render(request, 'myflipbook/help.html')
+
 def printable(request):
     return render(request, 'myflipbook/print.html')
 

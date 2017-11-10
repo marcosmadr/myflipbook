@@ -7,6 +7,7 @@ urlpatterns = [
     url(r'^video/thanks$', views.video_thanks, name='video_thanks'),
     url(r'^contact$', views.contact, name='contact'),
     url(r'^contact/thanks$', views.contact_thanks, name='contact_thanks'),
+    url(r'^help$', views.help, name='help'),
     url(r'^error$', views.error, name='error'),
     url(r'^print$', views.printable, name='printable'),
 ]
