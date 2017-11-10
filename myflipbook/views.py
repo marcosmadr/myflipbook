@@ -1,18 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from forms import ContactForm
-from forms import UploadForm
 from django.utils import timezone
 
-from myflipbook.models import jobs
+from myflipbook.models import Contact
 
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.core.mail import send_mail
 from django.http import JsonResponse
-
-import uuid
-import os
 
 def index(request):
     return render(request, 'myflipbook/home.html')
@@ -38,18 +34,8 @@ def contact(request):
         form = ContactForm(request.POST)
 
         if form.is_valid():
-            sender = form.cleaned_data['sender']
-            subject = form.cleaned_data['subject']
-            message = form.cleaned_data['message']
-
+            form.save()
             return HttpResponseRedirect('contact/thanks')
-            """
-            send_mail(
-                'Feedback from your site, topic: %s' % subject,
-				message, sender,
-				['toguto@gmail.com']
-			)
-            """
         return render(request, 'myflipbook/contact.html', {'form': form })
 
     else:
