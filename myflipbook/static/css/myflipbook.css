@@ -1,14 +1,31 @@
+#fb-grayscale {
+    -webkit-filter: opacity(60%); /* Safari 6.0 - 9.0 */
+    filter: opacity(60%);
+
+}
 .fb-white-text {
-    color: black;
+    color: white;
+    text-shadow: 2px 2px black;
 }
 
 #div-home {
-    /*background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5) ), url("/static/images/flipbook-home-1.jpg");*/
     background-color: silver; 
     background-position:center top;
     background-size: cover;
     border-radius: 0px;
+    background-repeat: no-repeat;
+    min-height: 38vh;
 }
+
+#div-upload {
+    background-color: silver; 
+    background-position:center top;
+    background-size: cover;
+    border-radius: 0px;
+    background-repeat: no-repeat;
+    min-height: 38vh;
+}
+
 .fb-cover-deco {
     width: 113px;
     height: 77px;
@@ -33,7 +50,7 @@ a.nav-brand:link, a.nav-brand:visited, a.nav-brand:hover, a.nav-brand:active {
 }
 
 .fb-menu-btn:hover {
-	background-color : rgba(0, 0, 0, 0.7);
+	background-color : rgba(0, 0, 0, 0.5);
 }
 
 .fb-menu-btn {
@@ -43,11 +60,7 @@ a.nav-brand:link, a.nav-brand:visited, a.nav-brand:hover, a.nav-brand:active {
 }
 
 .fb-menu-background {
-    background: #196ec3; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(left top, #196ec3, #010458); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(bottom right, #196ec3, #010458); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(bottom right, #196ec3, #010458); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to bottom right, #196ec3, #010458); /* Standard syntax */
+    background: #006adc; 
 }
 
 /* Sticky footer styles
@@ -60,6 +73,7 @@ body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
 }
+
 .footer {
     position: absolute;
     bottom: 0;

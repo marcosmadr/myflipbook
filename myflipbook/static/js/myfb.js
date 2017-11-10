@@ -54,7 +54,7 @@ var buildCoverTemplates = function() {
 var buildCarouselContent = function(frames) {
     var imgurl = undefined;
     for(var i=0; i<frames.length; i++) {
-        $("#div-owl-carousel").append("<div><img id='img-frame-"+i+"' src='"+frames[i]+"'></div>");
+        $("#div-owl-carousel").append("<div><img class='frames' id='img-frame-"+i+"' src='"+frames[i]+"'></div>");
     }
     $(".owl-carousel").owlCarousel({
     margin:10,
@@ -93,8 +93,8 @@ var callbackUpdateCover = function(data) {
 };
 
 $("input[name=opt-filter]").click(function() {
-    $("img").removeClass("filter-sepia filter-grayscale filter-saturate filter-contrast filter-opacity nofilter");
-    $("img").addClass("filter-"+this.value);
+    $(".frames").removeClass("filter-sepia filter-grayscale filter-saturate filter-contrast filter-opacity nofilter");
+    $(".frames").addClass("filter-"+this.value);
     myflipbook.filters = "filter-"+this.value;
 });
 
