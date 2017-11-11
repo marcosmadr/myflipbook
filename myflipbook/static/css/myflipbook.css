@@ -4,11 +4,16 @@
 
 }
 .fb-white-text {
-    color: black;
+    color: white;
 }
 
 #div-home {
-    background-color: silver; 
+	background: silver; /* For browsers that do not support gradients */
+	background: -webkit-radial-gradient(100vh, #124084, #062c65); /* Safari 5.1 to 6.0 */
+	background: -o-radial-gradient(100vh, #124084, #062c65); /* For Opera 11.6 to 12.0 */
+	background: -moz-radial-gradient(100vh, #124084, #062c65); /* For Firefox 3.6 to 15 */
+	background: radial-gradient(100vh, #124084, #062c65); /* Standard syntax */
+	border-radius: 0px;
     min-height: 38vh;
 }
 
@@ -46,7 +51,7 @@ a.nav-brand:link, a.nav-brand:visited, a.nav-brand:hover, a.nav-brand:active {
 }
 
 .fb-menu-background {
-    background: #006adc; 
+    background: #062c65; 
 }
 
 /* Sticky footer styles
