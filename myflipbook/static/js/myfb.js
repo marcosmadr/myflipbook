@@ -2,59 +2,14 @@ $(document).ready(function(){
 
 var myflipbook = { data: undefined, progressInterval : undefined };
 
-myflipbook.cover_templates = {
-    tpl0: {
-        "name": "No Cover",
-		"img" : "frame-0.svg",
-        "text_font": "pt Arial",
-        "text_size": 30,
-        "text_color": "White",
-        "text_x": 40,
-        "text_y": 60
-    },
-    tpl1: {
-        "name": "Happy Birthday",
-		"img": "frame-2.svg",
-        "text_font": "pt Courier",
-        "text_size": 30,
-        "text_color": "Yellow",
-        "text_x": 60,
-        "text_y": 80
-    },
-    tpl2: {
-        "name": "Vintage",
-		"img": "frame-1.svg",
-        "text_font": "pt Helvetica",
-        "text_size": 30,
-        "text_color": "Black",
-        "text_x": 80,
-        "text_y": 70
-    },
-    tpl3: {
-        "Name": "Cinema",
-		"img": "frame-4.svg",
-        "text_font": "pt Impact",
-        "text_size": 30,
-        "text_color": "White",
-        "text_x": 90,
-        "text_y": 190
+$.get("video/settings", function(response) { 
+    if ( response && response.code === 0 ) {
+        myflipbook.settings = response.data;
+    } else {
+        console.log("Cannot get template data!");
+        console.log(response);
     }
-};
-
-var buildCoverTemplates = function() {
-    for (tpl in myflipbook.cover_templates) {
-		$("#cover-deco").append(
-			"<div class='col-12 col-md-2'>" +
-			"	<div class='item'>" +
-			"		<img src='/static/images/frames/" + myflipbook.cover_templates[tpl].img +"'"+
-			"		class='fb-cover-deco fb-cover-select' id='img-cover-deco-" + tpl + "' " +
-			"		alt='" + myflipbook.cover_templates[tpl].name + "'>" +
-			"		<div class='item-overlay top'></div>"+
-			"	</div>"+
-			"</div>"
-		);
-    }
-};
+});
 
 var buildCarouselContent = function(frames) {
     var imgurl = undefined;
@@ -97,10 +52,12 @@ var callbackUpdateCover = function(data) {
     $("#img-frame-0").attr("src", data);
 };
 
-$("input[name=opt-filter]").click(function() {
-    $(".frames").removeClass("filter-sepia filter-grayscale filter-saturate filter-contrast filter-opacity nofilter");
-    $(".frames").addClass("filter-"+this.value);
-    myflipbook.filters = "filter-"+this.value;
+$('.opt-filters').click(function(event) {
+    for (var i=0; i < myflipbook.settings.filters.length; i++) {
+        $(".frames").removeClass("filter-"+myflipbook.settings.filters[i].id);
+    }
+    myflipbook.filter = "filter-"+this.value;
+    $(".frames").addClass(myflipbook.filter);
 });
 
 $("#btn-generate-frames").click(function() {
@@ -136,13 +93,17 @@ $("#btn-generate-frames").click(function() {
 
 });
 
-$('#cover-deco').on('click', '.fb-cover-select', function(event) {
-	event.preventDefault();
-    myflipbook.data.setCoverDeco(document.getElementById(this.id));
-	var tpl_id = this.id.split('-')[3];
-    myflipbook.data.setCoverTemplate(myflipbook.cover_templates[tpl_id]);
-    myflipbook.data.createCover(callbackUpdateCover);
-    $("#div-owl-carousel").trigger("to.owl.carousel", 0);
+$(".fb-cover-select").click(function() {
+    
+    if ( ! myflipbook.settings.templates.data ) {
+        alert("Cannot find cover templates, check your internet connection.");
+    } else {
+        var tpl_id = this.id.split('-')[3];
+        myflipbook.data.setCoverDeco(this);
+        myflipbook.data.setCoverTemplate(myflipbook.settings.templates.data[tpl_id]);
+        myflipbook.data.createCover(callbackUpdateCover);
+        $("#div-owl-carousel").trigger("to.owl.carousel", 0);
+    }
 });
 
 $("#btn-apply-text").click(function() {
@@ -154,10 +115,8 @@ $("#btn-apply-text").click(function() {
 $("#btn-generate-print").click(function() {
     var printWindow = window.open("print");
     printWindow.myflipbook = { frames: myflipbook.data.getFrames(),
-                                filters: myflipbook.filters};
+                                filter: myflipbook.filter};
     window.location.replace("/myflipbook/video/thanks");
 });
-
-buildCoverTemplates();
 
 });

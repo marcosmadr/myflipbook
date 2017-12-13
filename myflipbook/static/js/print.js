@@ -28,7 +28,7 @@ var generatePrintable = function() {
         } 
     }
     $('#div-print').append(table);
-    $('img').addClass(myflipbook.filters);
+    $('img').addClass(myflipbook.filter);
 }
 
 generatePrintable();
