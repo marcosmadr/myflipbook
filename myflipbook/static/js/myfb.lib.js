@@ -1,6 +1,9 @@
 
 var myFlipBook = function(file, func) {
-
+    /* Receives a video as argument and split it into frames, also allows to add
+     * decoration and text on the first frame.
+     */
+    
     this.allowed_ext = ["mp4", "avi", "mov", "wmv", "mkv"];
     this.frames = [];
     this.position = 0;
@@ -21,7 +24,7 @@ var myFlipBook = function(file, func) {
         text_x: 0,
         text_y: 0
     };
-
+    /* callback function returns frames after extraction */
     this.callback_func = func;
 
     if (!file) {
@@ -41,6 +44,7 @@ var myFlipBook = function(file, func) {
     var that = this;
 
     var createImage = function() {
+        /* Draw video frame into a canvas object */
         var canvas = document.createElement("canvas");
         canvas.width = that.frame.width;
         canvas.height = that.frame.height;
@@ -52,6 +56,8 @@ var myFlipBook = function(file, func) {
     };
 
     this.video.addEventListener("seeked", function() {
+        /* Go throught the video taking frames on each interval and appending 
+         * it to the list */
         that.frames.push(createImage());
 
         that.position += that.increment;
@@ -65,6 +71,7 @@ var myFlipBook = function(file, func) {
     }, false);
 
     this.video.addEventListener("loadeddata", function() {
+        /* Get video properties */
         if (Number.isNaN(this.duration)) {
             throw {
                 name: "FormatError",
@@ -119,6 +126,7 @@ myFlipBook.prototype.getFrames = function() {
 };
 
 myFlipBook.prototype.setCoverDeco = function(img) {
+    /* Set svg image as cover decoration */
     this.cover.frame_deco = img;
 };
 
