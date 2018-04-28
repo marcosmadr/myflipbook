@@ -2,6 +2,6 @@
 
 MyFlipBook creates printable flipbooks from your videos
 
-Demo <a href="https://safe-woodland-72157.herokuapp.com/myflipbook/" target="_blank">here!</a>
+Demo <a href="https://myflipbook-v2.herokuapp.com/myflipbook/" target="_blank">here!</a>
 
 # myflipbook
