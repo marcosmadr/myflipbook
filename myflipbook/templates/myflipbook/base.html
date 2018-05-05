@@ -19,7 +19,7 @@
 
   <body>
 
-        <nav class="navbar fb-menu-background">
+        <nav class="navbar fb-menu-background fixed-top">
             <div class="container">
               <h3>
                   <a href="{% url 'index' %}" class="nav-brand">
@@ -29,23 +29,22 @@
               <div class="col-md-3">
                   <nav class="nav nav-pills">
                     <li class="nav-item fb-menu-btn">
-                        <a class="nav-link fb-menu" id="btn-1" href="{% url 'index' %}">Home</a>
+                        <a class="nav-link fb-menu" id="btn-1" href="#home">Home</a>
                     </li>
                     <li class="nav-item fb-menu-btn">
-                        <a class="nav-link fb-menu" id="btn-2" href="{% url 'help' %}">Help</a>
+                        <a class="nav-link fb-menu" id="btn-3" href="#help">Help</a>
                     </li>
                     <li class="nav-item fb-menu-btn">
-                        <a class="nav-link fb-menu" id="btn-3" href="{% url 'contact' %}">Contact</a>
+                        <a class="nav-link fb-menu" id="btn-4" href="#contact">Contact</a>
                     </li>
                   </nav>
               </div>
             </div>
-
         </nav>
-
+        
         {% block content %}
         {% endblock %}	
-
+      
     <footer class="footer text-center">
       <div class="container">
         <span class="text-muted">MyFlipBook was developed by <a href="http://www.linkedin.com/in/maugusto" target="_blank">Marcos Ribeiro</a></span>
@@ -60,6 +59,7 @@
     <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/home.js' %}"></script>
     {% block import_js %}
     {% endblock %}
   </body>
