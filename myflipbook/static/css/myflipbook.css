@@ -12,18 +12,15 @@
     background: url('/static/images/mobile-video.jpeg');
     background-size: cover;
     background-position: 70% 30%;
-    min-height: 60vh;    
+    width: 100%;
+    height: auto;
+    min-height: 60vh;
     padding-top: 15vh;
 }
 
 .fb-cover-deco {
     width: 113px;
     height: 77px;
-}
-
-.active {
-    border-color: white;
-    
 }
 
 a.nav-brand:link, a.nav-brand:visited, a.nav-brand:hover, a.nav-brand:active {
@@ -113,7 +110,11 @@ body {
     margin-top: 0px;
     margin-bottom: 0px;
     border-radius: 0px;
+}
 
+.fb-no-padding {
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 .fb-faded-text {

@@ -2,7 +2,7 @@ $(document).ready(function(){
 
 var myflipbook = { data: undefined, progressInterval : undefined };
 
-$.get("video/settings", function(response) { 
+$.get("settings", function(response) { 
     if ( response && response.code === 0 ) {
         myflipbook.settings = response.data;
     } else {
@@ -56,41 +56,8 @@ $('.opt-filters').click(function(event) {
     for (var i=0; i < myflipbook.settings.filters.length; i++) {
         $(".frames").removeClass("filter-"+myflipbook.settings.filters[i].id);
     }
-    myflipbook.filter = "filter-"+this.value;
-    $(".frames").addClass(myflipbook.filter);
-});
-
-$("#btn-generate-frames").click(function() {
-
-    var file_input = document.getElementById("file-video");
-    file = file_input.files[0];
-
-    try {
-        myflipbook.data = new myFlipBook(file, callbackUpdateContent); 
-    } catch (e) {
-        switch(e.name) {
-            case "FileInput":
-                $("#div-error").html("<strong>Sorry,</strong>Select a file!");
-                $("#div-error").show();
-                break;
-            case "InvalidExtension":
-                $("#div-error").html("<strong>Sorry,</strong>Invalid file format!");
-                $("#div-error").show();
-                break;
-            default:
-                $("#div-error").html("<strong>Sorry,</strong>Unknown error!");
-                $("#div-error").show();
-        }
-        return false;
-    }
-    $("#div-error").hide();
-    $("#div-upload").hide();
-    $("#div-loading").show();
-
-    myflipbook.progressInt = setInterval(function() { 
-        $(".progress-bar").width(myflipbook.data.progress() + "%").html(myflipbook.data.progress() + "%");
-   }, 500);
-
+    myflipbook.data.filter = "filter-"+this.value;    
+    $(".frames").addClass(myflipbook.data.filter);
 });
 
 $(".fb-cover-select").click(function() {
@@ -113,10 +80,46 @@ $("#btn-apply-text").click(function() {
 });
 
 $("#btn-generate-print").click(function() {
-    var printWindow = window.open("print");
-    printWindow.myflipbook = { frames: myflipbook.data.getFrames(),
-                                filter: myflipbook.filter};
-    window.location.replace("/myflipbook/video/thanks");
+    myflipbook.data.createHtmlContent("a4");
+
+    var body = $("body");
+    body.hide()
+    body.html(myflipbook.data.content)
+    body.show("slow");
+    $('html,body').scrollTop(0);
+    $('img').addClass(myflipbook.data.filter);
 });
+
+
+var loadData = function(file) {
+
+    try {
+        myflipbook.data = new myFlipBook(file, callbackUpdateContent); 
+    } catch (e) {
+        switch(e.name) {
+            case "FileInput":
+                $("#div-error").html("<strong>Sorry,</strong>Select a file!");
+                $("#div-error").show();
+                break;
+            case "InvalidExtension":
+                $("#div-error").html("<strong>Sorry,</strong>Invalid file format!");
+                $("#div-error").show();
+                break;
+            default:
+                $("#div-error").html("<strong>Sorry,</strong>Unknown error! "+e.name);
+                $("#div-error").show();
+        }
+        return false;
+    }
+    $("#div-error").hide();
+    $("#div-upload").hide();
+    $("#div-loading").show();
+
+    myflipbook.progressInt = setInterval(function() { 
+        $(".progress-bar").width(myflipbook.data.progress() + "%").html(myflipbook.data.progress() + "%");
+   }, 500);
+};
+
+loadData(localStorage.getItem('fb_video_url'));
 
 });

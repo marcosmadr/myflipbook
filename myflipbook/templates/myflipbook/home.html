@@ -1,19 +1,19 @@
-{% extends "myflipbook/base.html" %}
+{% extends "myflipbook/menu.html" %}
 {% block content %}
 
 <section id="home">
     <div class="jumbotron fb-no-margin" id="div-home">
         <div class="col-12 mx-auto text-center">
             <h1 class="display-4 fb-faded-text">MyFlipBook</h1>
-            <h2 class="fb-faded-text">Create amazing flipbooks in two clicks</h2>
-            <p><a href="#video" class="btn btn-lg btn-primary fb-btn mt-5">Select Video</a></p>
+            <h2 class="fb-faded-text">Transform videos into amazing flipbooks</h2>
+            <p><a href="#video" class="btn btn-lg btn-primary circle fb-btn mt-5">Create Now</a></p>
         </div>
     </div>
 </section>
 {% load static %}
 
 <section id="discover">
-    <div class="jumbotron fb-no-margin bg-dark" id="div-upload">
+    <div class="jumbotron fb-no-margin bg-dark">
         <div class="col-md-6 text-center mx-auto fb-white-text">
                 <h2>Do it Yourself</h2>
                 <hr>
@@ -35,47 +35,48 @@
                     </ul>
         </div>
     </div>
-</section>
 
-<div class="jumbotron fb-no-margin bg-white" id="fb-grayscale">
-    <div class="row justify-content-center text-center">
-        <div class="col-md-3">
-            <div class="mb-md-3">
-                <img src="{% static 'images/icons/glyphicons-70-gift.png' %}">
+    <div class="jumbotron fb-no-margin bg-white" id="fb-grayscale">
+        <div class="row justify-content-center text-center">
+            <div class="col-md-3">
+                <div class="mb-md-3">
+                    <img src="{% static 'images/icons/glyphicons-70-gift.png' %}">
+                </div>
+                <h4>Creative gift</h4>
+                <p>Great gift to surprise your friends</p>
             </div>
-            <h4>Creative gift</h4>
-            <p>Great gift to surprise your friends</p>
-        </div>
-        <div class="col-md-3">
-            <div class="mb-md-3">
-                <img src="{% static 'images/icons/glyphicons-181-facetime-video.png' %}">
+            <div class="col-md-3">
+                <div class="mb-md-3">
+                    <img src="{% static 'images/icons/glyphicons-181-facetime-video.png' %}">
+                </div>
+                <h4>Keep memories</h4>
+                <p>Keep your memories in a original format</p>
             </div>
-            <h4>Keep memories</h4>
-            <p>Keep your memories in a original format</p>
-        </div>
-        <div class="col-md-3">
-            <div class="mb-md-3">
-                <img src="{% static 'images/icons/glyphicons-289-scissors.png' %}">
+            <div class="col-md-3">
+                <div class="mb-md-3">
+                    <img src="{% static 'images/icons/glyphicons-289-scissors.png' %}">
+                </div>
+                <h4>DIY</h4>
+                <p>Print, cut, stapple it. Have fun doing it yourself!</p>
             </div>
-            <h4>DIY</h4>
-            <p>Print, cut, stapple it. Have fun doing it yourself!</p>
         </div>
     </div>
-</div>
+</section>
 
 <section id="video">
     <div class="jumbotron fb-no-margin" id="div-upload">    
         <div class="col-md-5 text-center mx-auto">
                 <h2>Select a Video</h2>
                 <hr>
-                <p>Choose a video to generate your flipbook and click on 'Generate Flipbook'!</p>
+                <p>Choose a video to generate your flipbook and click on 'Create Flipbook'!</p>
         </div>
         <div class="row justify-content-center text-center" id="div-upload-params">
             <div class="col-md-5 mx-auto text-center">
                 <input type="file" id="file-video" class="btn btn-lm" accept="video/*">
                 <div class="form-group">
-                    <button class="btn btn-lg btn-primary" type="button" id="btn-generate-frames">Generate Flipbook</button>
+                    <button class="btn btn-lg btn-primary" type="button" id="btn-generate-frames">Create Flipbook</button>
                 </div>
+                <div class="alert alert-warning" style="display:none" id="file-video-error">Select a video first!</div>
             </div>
         </div>
     </div>
