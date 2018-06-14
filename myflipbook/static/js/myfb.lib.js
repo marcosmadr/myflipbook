@@ -1,9 +1,7 @@
-
 var myFlipBook = function(file, func) {
     /* Receives a video as argument and split it into frames, also allows to add
      * decoration and text on the first frame.
      */
-    
     this.allowed_ext = ["mp4", "avi", "mov", "wmv", "mkv"];
     this.frames = [];
     this.position = 0;
@@ -24,6 +22,16 @@ var myFlipBook = function(file, func) {
         text_x: 0,
         text_y: 0
     };
+
+    this.page_sizes = {
+        "a4": {
+                "size_x": 297, 
+                "size_y":210,
+                "max_per_x": 2,
+                "max_per_y": 4
+            }
+    };
+
     /* callback function returns frames after extraction */
     this.callback_func = func;
 
@@ -31,13 +39,7 @@ var myFlipBook = function(file, func) {
         throw {name: "FileInput", message: "Missing input file"};
     }
 
-    var ext = file.name.split(".").pop().toLowerCase();
-
-    if ($.inArray(ext, this.allowed_ext) === -1) {
-        throw {name: "InvalidExtension", message: "Invalid video type"};
-    }
-
-    this.fileURL = URL.createObjectURL(file);
+    this.fileURL = file;
     this.video = document.createElement("video");
     this.video.src = this.fileURL;
 
@@ -164,3 +166,34 @@ Number.prototype.toFixedDown = function(n) {
     return Number(x[0] + "." + String(x[1]).substring(0, n));
 };
 
+myFlipBook.prototype.createHtmlContent = function(page_size) {    
+
+    if (page_size in Object.keys(this.page_sizes)) {
+        this.page = page;
+    } else {
+        this.page = this.page_sizes.a4;
+    }
+    var content = $('<div></div>');
+    var y_counter = 0;
+    var frames = this.getFrames();
+    var table = $('<table class="fb-printer"></table>');
+
+    while (frames.length) {
+
+        var tmp_frames = frames.splice(0, this.page.max_per_x);
+
+        var line = $('<tr></tr>');
+        for (var i=0; i<tmp_frames.length; i++) {
+            line.append('<td class="fb-printer"><img class="frames" src="'+tmp_frames[i]+'"></td>');
+        }
+        $(table).append(line);
+
+        y_counter++; 
+        if (y_counter >= this.page.max_per_y) {
+            y_counter = 0;
+            content.append(table);
+            table = $('<table class="fb-printer"></table>');
+        } 
+    }
+    this.content = content;
+}

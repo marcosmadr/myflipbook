@@ -8,22 +8,19 @@
 }
 
 #div-home {
-	background: silver; /* For browsers that do not support gradients */
-	background: -webkit-radial-gradient(100vh, #124084, #062c65); /* Safari 5.1 to 6.0 */
-	background: -o-radial-gradient(100vh, #124084, #062c65); /* For Opera 11.6 to 12.0 */
-	background: -moz-radial-gradient(100vh, #124084, #062c65); /* For Firefox 3.6 to 15 */
-	background: radial-gradient(100vh, #124084, #062c65); /* Standard syntax */
-	border-radius: 0px;
-    min-height: 38vh;
+	background: silver; /* For browsers that do not support gradients */    
+    background: url('/static/images/mobile-video.jpeg');
+    background-size: cover;
+    background-position: 70% 30%;
+    width: 100%;
+    height: auto;
+    min-height: 60vh;
+    padding-top: 15vh;
 }
 
 .fb-cover-deco {
     width: 113px;
     height: 77px;
-}
-
-.active {
-    border-bottom: 2px solid #fff;
 }
 
 a.nav-brand:link, a.nav-brand:visited, a.nav-brand:hover, a.nav-brand:active {
@@ -36,7 +33,7 @@ a.nav-brand:link, a.nav-brand:visited, a.nav-brand:hover, a.nav-brand:active {
 }
 
 .fb-menu {
-    color: #e8eae8;
+    color: #e8eae8;    
     font-weight: bold;
 }
 
@@ -52,6 +49,7 @@ a.nav-brand:link, a.nav-brand:visited, a.nav-brand:hover, a.nav-brand:active {
 
 .fb-menu-background {
     background: #062c65; 
+    background: #007bff;
 }
 
 /* Sticky footer styles
@@ -106,4 +104,19 @@ body {
 	-moz-transform: scale(1.1);
 	-webkit-transform: scale(1.1);
 	transform: scale(1.1);
+}
+
+.fb-no-margin {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border-radius: 0px;
+}
+
+.fb-no-padding {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.fb-faded-text {
+    color: rgba(255,255,255,.8)
 }

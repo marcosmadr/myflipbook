@@ -16,35 +16,15 @@
     <link href="{% static 'css/myflipbook.css' %}" rel="stylesheet">
     <link href="{% static 'css/myflipbook.filters.css' %}" rel="stylesheet">
   </head>
-
   <body>
+    {% block menu %}
 
-        <nav class="navbar fb-menu-background">
-            <div class="container">
-              <h3>
-                  <a href="{% url 'index' %}" class="nav-brand">
-                  <img src="{% static 'images/icons/glyphicons-9-film.png' %}">
-                  MyFlipBook</a>
-              </h3>
-              <div class="col-md-3">
-                  <nav class="nav nav-pills">
-                    <li class="nav-item fb-menu-btn">
-                        <a class="nav-link fb-menu" id="btn-1" href="{% url 'index' %}">Home</a>
-                    </li>
-                    <li class="nav-item fb-menu-btn">
-                        <a class="nav-link fb-menu" id="btn-2" href="{% url 'help' %}">Help</a>
-                    </li>
-                    <li class="nav-item fb-menu-btn">
-                        <a class="nav-link fb-menu" id="btn-3" href="{% url 'contact' %}">Contact</a>
-                    </li>
-                  </nav>
-              </div>
-            </div>
+    {% endblock %}
 
-        </nav>
-
-        {% block content %}
-        {% endblock %}	
+    
+    {% block content %}
+    
+    {% endblock %}
 
     <footer class="footer text-center">
       <div class="container">
@@ -52,16 +32,16 @@
       </div>
     </footer>
 
-   <!-- Bootstrap core JavaScript
-    <!-- Bootstrap core JavaScript
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/home.js' %}"></script>
     {% block import_js %}
     {% endblock %}
   </body>
 </html>
+
 

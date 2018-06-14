@@ -1,13 +1,9 @@
-@page {
-    size: 21cm 29.7cm;
-	margin: 5mm;
-}
-table {
+.fb-printer table {
     width: 210mm;
     background-color: none;
 	page-break-after: always; 
 }
-td {
+.fb-printer td {
     padding-top: 2.5mm;
     padding-bottom: 2.5mm;
     padding-left: 10mm;

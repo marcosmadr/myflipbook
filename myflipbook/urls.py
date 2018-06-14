@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^video$', views.video, name='video'),
+    url(r'^video/$', views.video, name='video'),
     url(r'^video/settings$', views.video_settings, name='video_settings'),
     url(r'^video/thanks$', views.video_thanks, name='video_thanks'),
     url(r'^contact$', views.contact, name='contact'),

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from forms import ContactForm
+from .forms import ContactForm
 from django.utils import timezone
 
 from myflipbook.models import Contact
