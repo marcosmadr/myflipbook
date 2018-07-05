@@ -45,7 +45,7 @@ var myFlipBook = function(file, func) {
 
     var that = this;
 
-    var createImage = function() {
+    this.createImage = function() {
         /* Draw video frame into a canvas object */
         var canvas = document.createElement("canvas");
         canvas.width = that.frame.width;
@@ -60,7 +60,7 @@ var myFlipBook = function(file, func) {
     this.video.addEventListener("seeked", function() {
         /* Go throught the video taking frames on each interval and appending 
          * it to the list */
-        that.frames.push(createImage());
+        that.frames.push(that.createImage());
 
         that.position += that.increment;
 
